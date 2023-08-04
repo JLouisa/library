@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="./javascript.js" defer></script>
-  </head>
-  <body>
-    <p>Library</p>
-    <div>
-      <form action="">
-        <label for="addBook"
-          >Author, title, number of pages, read the book</label
-        ><br />
-        <input
-          type="text"
-          id="addBook"
-          name="addBook"
-          placeholder="Author, title, number of pages, read the book"
-        />
-        <button class="addBtn">Add Book</button>
-      </form>
-    </div>
-    <div class="books"></div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./javascript.js" defer></script>
+</head>
+
+<body>
+  <p>Library</p>
+  <div class="theForm">
+    <form action="">
+      <div>
+        <label for="addAuthor">Author</label>
+        <input type="text" id="addAuthor" name="addAuthor" placeholder="Author" />
+      </div>
+      <div>
+        <label for="addTitle">Title</label>
+        <input type="text" id="addTitle" name="addTitle" placeholder="Title" />
+      </div>
+      <div>
+        <label for="addNoP">Number of pages</label>
+        <input type="text" id="addNoP" name="addNoP" placeholder="Number of pages" />
+      </div>
+      <div>
+        <label for="addRead">Have your complete read this book</label><br>
+        <label for="addRead">Yes</label>
+        <input type="radio" id="addRead" name="addRead" value="Yes" />
+        <label for="addRead">No</label>
+        <input type="radio" id="addRead" name="addRead" value="No" />
+      </div>
+      <button class="addBtn">NEW BOOK</button>
+    </form>
+  </div>
+  <div class="books"></div>
+</body>
+
 </html>

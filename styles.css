@@ -27,13 +27,14 @@ p {
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.164);
 }
 
-form {
-  text-align: center;
-}
-
 #addBook {
   width: 500px;
   height: 20px;
   border-radius: 10px;
   outline: none;
+}
+
+.theForm {
+  border: 1px solid green;
+  text-align: center;
 }
