@@ -23,4 +23,17 @@ p {
   border: 2px solid black;
   background-color: antiquewhite;
   padding: 60px 40px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.164);
+}
+
+form {
+  text-align: center;
+}
+
+#addBook {
+  width: 500px;
+  height: 20px;
+  border-radius: 10px;
+  outline: none;
 }
