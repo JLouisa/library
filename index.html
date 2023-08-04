@@ -11,15 +11,18 @@
 
 <body>
   <p>Library</p>
+  <div class="newBook">
+    <button id="newBtn">NEW BOOK</button>
+  </div>
   <div class="theForm">
-    <form action="">
-      <div>
-        <label for="addAuthor">Author</label>
-        <input type="text" id="addAuthor" name="addAuthor" placeholder="Author" />
-      </div>
+    <form action="" id="leForm">
       <div>
         <label for="addTitle">Title</label>
         <input type="text" id="addTitle" name="addTitle" placeholder="Title" />
+      </div>
+      <div>
+        <label for="addAuthor">Author</label>
+        <input type="text" id="addAuthor" name="addAuthor" placeholder="Author" />
       </div>
       <div>
         <label for="addNoP">Number of pages</label>
@@ -32,8 +35,9 @@
         <label for="addRead">No</label>
         <input type="radio" id="addRead" name="addRead" value="No" />
       </div>
-      <button class="addBtn">NEW BOOK</button>
     </form>
+    <button class="addBtn">Add Book</button>
+
   </div>
   <div class="books"></div>
 </body>
