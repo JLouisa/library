@@ -1,39 +1,69 @@
 let myLibrary = [];
 
-function Book() {
-  // the constructor...
+function Book(title, author, pages, read) {
+  (this.title = title),
+    (this.author = author),
+    (this.pages = pages),
+    (this.read = read);
 }
 
-function addBookToLibrary() {
-  // do stuff here
-}
-
-const testLibrary = ["Harry Potter", "Vampire Diaries", "Lord of the Rings"];
-const printBooks = document.querySelector(".books");
 let i = 0;
-
-// ---------------------------
-const titleEl = document.querySelector("#addTitle");
-titleEl.addEventListener("input", updateValue);
-
 let titleInfo = "";
+let authorInfo = "";
+let pagesInfo = "";
+let readInfo = "";
+let book = [];
+
+const printBooks = document.querySelector(".books");
+const titleEl = document.querySelector("#addTitle");
+const authorEl = document.querySelector("#addAuthor");
+const noPEl = document.querySelector("#addNoP");
+const readEl = document.querySelector("#addRead");
+const addBtn = document.querySelector(".addBtn");
+const newBtn = document.querySelector("#newBtn");
+const theForm = document.querySelector(".theForm");
+
+titleEl.addEventListener("input", updateValue);
+authorEl.addEventListener("input", updateValue2);
+noPEl.addEventListener("input", updateValue3);
+readEl.addEventListener("input", updateValue4);
+
+newBtn.addEventListener("click", () => {
+  theForm.setAttribute("style", "visibility: visible;");
+});
+
+addBtn.addEventListener("click", () => {
+  createBook(titleInfo, authorInfo, pagesInfo, readInfo);
+  addBookToLibrary(i);
+  resetForms();
+  theForm.setAttribute("style", "visibility: hidden;");
+  addScreen(book[i].title);
+  console.log(myLibrary);
+});
+
 function updateValue(e) {
   titleInfo = e.target.value;
 }
-// ---------------------------
-
-function authorName(evt) {
-  console.log(evt.key);
-  const key = evt.key;
+function updateValue2(e) {
+  authorInfo = e.target.value;
+}
+function updateValue3(e) {
+  pagesInfo = e.target.value;
+}
+function updateValue4(e) {
+  readInfo = e.target.value;
 }
 
-const authorEl = document.querySelector("#addAuthor");
-authorEl.addEventListener("input", updateValue);
+function addBookToLibrary(n) {
+  myLibrary.push(book[n]);
+}
 
-//----------------------------
+function resetForms() {
+  document.querySelector("#leForm").reset();
+}
 
-function myFunction() {
-  document.getElementById("leForm").reset();
+function createBook(title, authors, pages, read) {
+  book[i] = new Book(title, authors, pages, read);
 }
 
 function addScreen(n) {
@@ -43,24 +73,15 @@ function addScreen(n) {
   printBooks.appendChild(titles);
 }
 
-const addBtn = document.querySelector(".addBtn");
-addBtn.addEventListener("click", () => {
-  testLibrary.push(titleInfo);
-  console.log(testLibrary);
-  theForm.setAttribute("style", "visibility: hidden;");
-  addScreen(titleInfo);
-});
-// ---------------------------
+const book1 = new Book("Harry Potter", "J. K. Rowling", "309", "No");
+const book2 = new Book("Vampire Diaries", "L. J. Smith", "272", "Yes");
+const book3 = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "No");
 
-testLibrary.forEach((n) => {
+myLibrary.push(book1, book2, book3);
+
+myLibrary.forEach((book) => {
   let titles = document.createElement("div");
   titles.classList.add("title", `nr${i++}`);
-  titles.textContent = n;
+  titles.textContent = book.title;
   printBooks.appendChild(titles);
-});
-
-const newBtn = document.querySelector("#newBtn");
-const theForm = document.querySelector(".theForm");
-newBtn.addEventListener("click", () => {
-  theForm.setAttribute("style", "visibility: visible;");
 });
