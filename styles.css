@@ -1,4 +1,10 @@
+body {
+  border: 1px solid blue;
+}
+
 p {
+  margin: 10px;
+  border: 1px solid red;
   color: purple;
   font-size: 100px;
   font-weight: 700;
