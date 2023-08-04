@@ -7,3 +7,5 @@ function Book() {
 function addBookToLibrary() {
   // do stuff here
 }
+
+myLibrary.forEach();
