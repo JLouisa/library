@@ -38,7 +38,7 @@ addBtn.addEventListener("click", () => {
   addBookToLibrary(i);
   resetForms();
   theForm.setAttribute("style", "visibility: hidden;");
-  addScreen(book[i].title);
+  addScreen(book[i].title, book[i].author, book[i].pages, book[i].read);
 });
 
 cancelBtn.addEventListener("click", () => {
@@ -73,13 +73,17 @@ function createBook(title, authors, pages, read) {
 
 let titles = [];
 let cancelTitle = [];
-cancelTitle;
+let breaks = "";
+// cancelTitle;
 
-function addScreen(n) {
+function addScreen(title, authors, pages, read) {
   titles[i] = document.createElement("div");
   cancelTitle[i] = document.createElement("button");
+  breaks = document.createElement("br");
   titles[i].classList.add("title", `nr${i}`);
-  titles[i].textContent = n;
+
+  titles[i].textContent = title + " " + authors + " " + pages + " " + read;
+
   cancelTitle[i].classList.add(`deleteTitle${i}`, "delBtn");
   cancelTitle[i].textContent = "X";
   printBooks.appendChild(titles[i]);
@@ -100,6 +104,19 @@ myLibrary.push(book1, book2, book3);
 myLibrary.forEach((book) => {
   let titles = document.createElement("div");
   titles.classList.add("title", `nr${i++}`);
-  titles.textContent = book.title;
+  titles.textContent = book.title + book.author + book.pages + book.read;
   printBooks.appendChild(titles);
+});
+
+let print = "";
+let o = 0;
+
+let contentEl = document.querySelector(`.nr${i}`);
+myLibrary.forEach((n) => {
+  for (const property in n) {
+    print[o] += `${property}: ${n[property]}`;
+    console.log(print[o]);
+    o++;
+  }
+  // console.log(print1, print2, print3);
 });
