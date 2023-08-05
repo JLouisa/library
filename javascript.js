@@ -61,7 +61,6 @@ function searchBook(book) {
         singleAddScreen(book);
         break;
       }
-      i++;
     }
   }
 }
