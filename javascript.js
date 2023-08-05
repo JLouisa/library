@@ -1,4 +1,6 @@
 let myLibrary = [];
+let createTableData = [];
+let createTableRow = [];
 
 function Book(title, author, pages, read) {
   (this.title = title),
@@ -7,34 +9,44 @@ function Book(title, author, pages, read) {
     (this.read = read);
 }
 
+let i = 1;
+
+const book1 = new Book("Harry Potter", "J. K. Rowling", "309", "No");
+const book2 = new Book("Vampire Diaries", "L. J. Smith", "272", "Yes");
+const book3 = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "No");
+
+myLibrary.push(book1, book2, book3);
+
 function addBookToLibrary() {
-  let getBook = prompt("What book do you want to add?");
-  myLibrary.push(getBook);
+  // let getBook = new Book("Harry Potter", "J. K. Rowling", "309", "No");
+  // myLibrary.push(getBook);
   console.log(myLibrary);
   addScreen(myLibrary);
 }
 
 const createTableBody = document.querySelector("tbody");
-const createTableData = document.createElement("td");
+const createTableDataHead = document.createElement("td");
+// const createTableData = document.createElement("td");
+
 addBookToLibrary();
 
 function addScreen(library) {
   for (let book of library) {
     console.log(book);
-    createTableData.textContent = book;
-    createTableBody.appendChild(createTableData);
+    createTableDataHead.textContent = `Book ${i}`;
+    createTableRow[i] = document.createElement("tr");
+    createTableBody.appendChild(createTableRow[i]);
+    createTableRow[i].appendChild(createTableDataHead);
     // For the properties
-    // for (let property in book) {
-    //   console.log(property + book[property]);
-    // }
+    for (let property in book) {
+      console.log(property + book[property]);
+      createTableData[i] = document.createElement(`td`);
+      createTableData[i].textContent = book[property];
+      createTableRow[i].appendChild(createTableData[i]);
+    }
+    i++;
   }
 }
-
-// const book1 = new Book("Harry Potter", "J. K. Rowling", "309", "No");
-// const book2 = new Book("Vampire Diaries", "L. J. Smith", "272", "Yes");
-// const book3 = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "No");
-
-// myLibrary.push(book1, book2, book3);
 
 //----------------------------------------------------------------------------------
 // let i = 0;
