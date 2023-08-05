@@ -38,7 +38,8 @@ function searchBook(book) {
     } else {
       if (x == myLibrary.length - 1 && calcFound == false) {
         myLibrary.push(book);
-        singleAddScreen(book);
+        deleteAll();
+        libraryAddScreen(myLibrary);
         break;
       }
     }
@@ -74,6 +75,8 @@ function libraryAddScreen(getBook) {
     createDelBtn[getBook.indexOf(book)].addEventListener("click", () => {
       createTableRow[getBook.indexOf(book)].remove();
       myLibrary.splice(getBook.indexOf(book), 1);
+      deleteAll();
+      libraryAddScreen(myLibrary);
       console.log(myLibrary);
     });
   }
