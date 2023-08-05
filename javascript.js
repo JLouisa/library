@@ -57,9 +57,8 @@ function searchBook(book) {
       break;
     } else {
       if (x == myLibrary.length - 1 && calcFound == false) {
-        console.log("path5");
         myLibrary.push(book);
-        addScreen(myLibrary);
+        singleAddScreen(book);
         break;
       }
       i++;
@@ -70,10 +69,10 @@ function searchBook(book) {
 const createTableBody = document.querySelector("tbody");
 createTableBody.classList;
 
-addScreen(myLibrary);
+libraryAddScreen(myLibrary);
 
 //Create on screen
-function addScreen(getBook) {
+function libraryAddScreen(getBook) {
   for (let book of getBook) {
     createTableRow[i] = document.createElement("tr");
     createTableBody.appendChild(createTableRow[i]);
@@ -89,6 +88,21 @@ function addScreen(getBook) {
     }
     i++;
   }
+}
+
+function singleAddScreen(book) {
+  createTableRow[i] = document.createElement("tr");
+  createTableBody.appendChild(createTableRow[i]);
+  createTableDataHead[i] = document.createElement("td");
+  createTableDataHead[i].classList.add(`td${i}`);
+  createTableDataHead[i].textContent = `Book ${i}`;
+  createTableRow[i].appendChild(createTableDataHead[i]);
+  for (let property in book) {
+    createTableData[i] = document.createElement(`td`);
+    createTableData[i].textContent = book[property];
+    createTableRow[i].appendChild(createTableData[i]);
+  }
+  i++;
 }
 
 //-------------------Forms-----------------------
@@ -139,22 +153,4 @@ cancelBtn.addEventListener("click", () => {
 
 function resetForms() {
   document.querySelector("#leForm").reset();
-}
-
-// console.log(myLibrary);
-// console.log(myLibrary.includes("272"));
-// console.log(myLibrary[1].title);
-// console.log(myLibrary.length);
-
-// for (let x = 0; x < myLibrary.length; x++) {
-//   console.log(x);
-//   if (myLibrary[x].title !== "Lord of the Rings") {
-//     console.log("Not here");
-//   } else {
-//     console.log("Nope");
-//   }
-// }
-
-for (l = 0; l < 6; l++) {
-  console.log(l);
 }
