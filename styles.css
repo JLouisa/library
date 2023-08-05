@@ -25,6 +25,7 @@ p {
   padding: 60px 40px;
   border-radius: 10px;
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.164);
+  font-weight: 700;
 }
 
 #addBook {
@@ -38,6 +39,10 @@ p {
   border: 1px solid green;
   text-align: center;
   visibility: hidden;
+}
+
+.delBtn {
+  border-radius: 10px;
 }
 
 .newBook {

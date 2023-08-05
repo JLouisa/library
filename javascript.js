@@ -22,6 +22,7 @@ const readEl = document.querySelector("#addRead");
 const addBtn = document.querySelector(".addBtn");
 const newBtn = document.querySelector("#newBtn");
 const theForm = document.querySelector(".theForm");
+const cancelBtn = document.querySelector("#cancelBtn");
 
 titleEl.addEventListener("input", updateValue);
 authorEl.addEventListener("input", updateValue2);
@@ -38,7 +39,11 @@ addBtn.addEventListener("click", () => {
   resetForms();
   theForm.setAttribute("style", "visibility: hidden;");
   addScreen(book[i].title);
-  console.log(myLibrary);
+});
+
+cancelBtn.addEventListener("click", () => {
+  theForm.setAttribute("style", "visibility: hidden;");
+  resetForms();
 });
 
 function updateValue(e) {
@@ -66,11 +71,24 @@ function createBook(title, authors, pages, read) {
   book[i] = new Book(title, authors, pages, read);
 }
 
+let titles = [];
+let cancelTitle = [];
+cancelTitle;
+
 function addScreen(n) {
-  let titles = document.createElement("div");
-  titles.classList.add("title", `nr${i++}`);
-  titles.textContent = n;
-  printBooks.appendChild(titles);
+  titles[i] = document.createElement("div");
+  cancelTitle[i] = document.createElement("button");
+  titles[i].classList.add("title", `nr${i}`);
+  titles[i].textContent = n;
+  cancelTitle[i].classList.add(`deleteTitle${i}`, "delBtn");
+  cancelTitle[i].textContent = "X";
+  printBooks.appendChild(titles[i]);
+  titles[i].appendChild(cancelTitle[i]);
+  let delta = titles[i];
+  cancelTitle[i].addEventListener("click", () => {
+    delta.remove();
+  });
+  i++;
 }
 
 const book1 = new Book("Harry Potter", "J. K. Rowling", "309", "No");
