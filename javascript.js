@@ -1,4 +1,24 @@
-let myLibrary = [];
+let myLibrary = [
+  // Book1 {
+  //   title: "Harry Potter",
+  //   Author: "J. K. Rowling",
+  //   Pages: "309",
+  //   Read: "No",
+  // },
+  // Book2 {
+  //   title: "Vampire Diaries",
+  //   Author: "L. J. Smith",
+  //   Pages: "272",
+  //   Read: "Yes",
+  // },
+  // Book3 {
+  //   title: "Lord of the Rings",
+  //   Author: "J. R. R. Tolkien",
+  //   Pages: "432",
+  //   Read: "No",
+  // },
+];
+
 let createTableData = [];
 let createTableRow = [];
 let createTableDataHead = [];
@@ -22,19 +42,39 @@ const book3 = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "No");
 
 myLibrary.push(book1, book2, book3);
 
-function addBookToLibrary() {
+function addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo) {
   let getBook = new Book(titleInfo, authorInfo, pagesInfo, readInfo);
-  myLibrary.push(getBook);
-  addScreen(myLibrary);
+  searchBook(getBook);
+}
+
+//Search in myLibrary Array for match
+function searchBook(book) {
+  let calcFound = false;
+  for (let x = 0; x < myLibrary.length; x++) {
+    if (myLibrary[x].title === book.title) {
+      alert("You already have this book in your list");
+      calcFound = true;
+      break;
+    } else {
+      if (x == myLibrary.length - 1 && calcFound == false) {
+        console.log("path5");
+        myLibrary.push(book);
+        addScreen(myLibrary);
+        break;
+      }
+      i++;
+    }
+  }
 }
 
 const createTableBody = document.querySelector("tbody");
 createTableBody.classList;
 
-// addBookToLibrary();
+addScreen(myLibrary);
 
-function addScreen(library) {
-  for (let book of library) {
+//Create on screen
+function addScreen(getBook) {
+  for (let book of getBook) {
     createTableRow[i] = document.createElement("tr");
     createTableBody.appendChild(createTableRow[i]);
     createTableDataHead[i] = document.createElement("td");
@@ -99,4 +139,22 @@ cancelBtn.addEventListener("click", () => {
 
 function resetForms() {
   document.querySelector("#leForm").reset();
+}
+
+// console.log(myLibrary);
+// console.log(myLibrary.includes("272"));
+// console.log(myLibrary[1].title);
+// console.log(myLibrary.length);
+
+// for (let x = 0; x < myLibrary.length; x++) {
+//   console.log(x);
+//   if (myLibrary[x].title !== "Lord of the Rings") {
+//     console.log("Not here");
+//   } else {
+//     console.log("Nope");
+//   }
+// }
+
+for (l = 0; l < 6; l++) {
+  console.log(l);
 }
