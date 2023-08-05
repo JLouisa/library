@@ -1,6 +1,7 @@
 let myLibrary = [];
 let createTableData = [];
 let createTableRow = [];
+let createTableDataHead = [];
 
 function Book(title, author, pages, read) {
   (this.title = title),
@@ -25,7 +26,7 @@ function addBookToLibrary() {
 }
 
 const createTableBody = document.querySelector("tbody");
-const createTableDataHead = document.createElement("td");
+// const createTableDataHead = document.createElement("td");
 // const createTableData = document.createElement("td");
 
 addBookToLibrary();
@@ -33,11 +34,13 @@ addBookToLibrary();
 function addScreen(library) {
   for (let book of library) {
     console.log(book);
-    createTableDataHead.textContent = `Book ${i}`;
     createTableRow[i] = document.createElement("tr");
     createTableBody.appendChild(createTableRow[i]);
-    createTableRow[i].appendChild(createTableDataHead);
+    // createTableRow[i].appendChild(createTableDataHead);
     // For the properties
+    createTableDataHead[i] = document.createElement("td");
+    createTableDataHead[i].textContent = `Book ${i}`;
+    createTableRow[i].appendChild(createTableDataHead[i]);
     for (let property in book) {
       console.log(property + book[property]);
       createTableData[i] = document.createElement(`td`);
