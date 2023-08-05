@@ -78,6 +78,12 @@ function updateValue4(e) {
 }
 
 //------------------3 Button EventListener-------------------------
+let titleInfo = "";
+let authorInfo = "";
+let pagesInfo = "";
+let readInfo = "";
+let book = [];
+
 newBtn.addEventListener("click", () => {
   theForm.setAttribute("style", "visibility: visible;");
 });
@@ -85,9 +91,9 @@ newBtn.addEventListener("click", () => {
 addBtn.addEventListener("click", () => {
   createBook(titleInfo, authorInfo, pagesInfo, readInfo);
   addBookToLibrary(i);
+  addScreen(book[i].title, book[i].author, book[i].pages, book[i].read);
   resetForms();
   theForm.setAttribute("style", "visibility: hidden;");
-  addScreen(book[i].title, book[i].author, book[i].pages, book[i].read);
 });
 
 cancelBtn.addEventListener("click", () => {
@@ -98,56 +104,3 @@ cancelBtn.addEventListener("click", () => {
 function resetForms() {
   document.querySelector("#leForm").reset();
 }
-
-//----------------------------------------------------------------------------------
-// let i = 0;
-// let titleInfo = "";
-// let authorInfo = "";
-// let pagesInfo = "";
-// let readInfo = "";
-// let book = [];
-
-// const printBooks = document.querySelector(".books");
-// const titleEl = document.querySelector("#addTitle");
-// const authorEl = document.querySelector("#addAuthor");
-// const noPEl = document.querySelector("#addNoP");
-// const readEl = document.querySelector("#addRead");
-// const addBtn = document.querySelector(".addBtn");
-// const newBtn = document.querySelector("#newBtn");
-// const theForm = document.querySelector(".theForm");
-// const cancelBtn = document.querySelector("#cancelBtn");
-
-// titleEl.addEventListener("input", updateValue);
-// authorEl.addEventListener("input", updateValue2);
-// noPEl.addEventListener("input", updateValue3);
-// readEl.addEventListener("input", updateValue4);
-
-// newBtn.addEventListener("click", () => {
-//   theForm.setAttribute("style", "visibility: visible;");
-// });
-
-// addBtn.addEventListener("click", () => {
-//   createBook(titleInfo, authorInfo, pagesInfo, readInfo);
-//   addBookToLibrary(i);
-//   resetForms();
-//   theForm.setAttribute("style", "visibility: hidden;");
-//   addScreen(book[i].title, book[i].author, book[i].pages, book[i].read);
-// });
-
-// cancelBtn.addEventListener("click", () => {
-//   theForm.setAttribute("style", "visibility: hidden;");
-//   resetForms();
-// });
-
-// function updateValue(e) {
-//   titleInfo = e.target.value;
-// }
-// function updateValue2(e) {
-//   authorInfo = e.target.value;
-// }
-// function updateValue3(e) {
-//   pagesInfo = e.target.value;
-// }
-// function updateValue4(e) {
-//   readInfo = e.target.value;
-// }
