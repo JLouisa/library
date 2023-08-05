@@ -95,6 +95,10 @@ cancelBtn.addEventListener("click", () => {
   resetForms();
 });
 
+function resetForms() {
+  document.querySelector("#leForm").reset();
+}
+
 //----------------------------------------------------------------------------------
 // let i = 0;
 // let titleInfo = "";
