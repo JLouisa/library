@@ -9,6 +9,7 @@ let pagesInfo = "";
 let readInfo = "";
 let createDelBtn = [];
 
+//Instructor
 function Book(title, author, pages, read) {
   (this.title = title),
     (this.author = author),
@@ -16,12 +17,13 @@ function Book(title, author, pages, read) {
     (this.read = read);
 }
 
+//Default books
 const book1 = new Book("Harry Potter", "J. K. Rowling", "309", "No");
 const book2 = new Book("Vampire Diaries", "L. J. Smith", "272", "Yes");
 const book3 = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "No");
-
 myLibrary.push(book1, book2, book3);
 
+//Add books to array
 function addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo) {
   let getBook = new Book(titleInfo, authorInfo, pagesInfo, readInfo);
   searchBook(getBook);
@@ -50,7 +52,7 @@ const createTableBody = document.querySelector("tbody");
 
 libraryAddScreen(myLibrary);
 
-//Create on screen
+//Create table content
 function libraryAddScreen(getBook) {
   for (let book of getBook) {
     createTableRow[getBook.indexOf(book)] = document.createElement("tr");
@@ -80,33 +82,6 @@ function libraryAddScreen(getBook) {
       console.log(myLibrary);
     });
   }
-}
-
-function singleAddScreen(book) {
-  createTableRow[myLibrary.indexOf(book)] = document.createElement("tr");
-  createTableBody.appendChild(createTableRow[myLibrary.indexOf(book)]);
-
-  for (let property in book) {
-    createTableData[myLibrary.indexOf(book)] = document.createElement(`td`);
-    createTableData[myLibrary.indexOf(book)].textContent = book[property];
-    createTableRow[myLibrary.indexOf(book)].appendChild(
-      createTableData[myLibrary.indexOf(book)]
-    );
-  }
-  createDelBtn[myLibrary.indexOf(book)] = document.createElement("button");
-  createDelBtn[myLibrary.indexOf(book)].classList.add(
-    `delBtn${myLibrary.indexOf(book)}`,
-    "del"
-  );
-  createDelBtn[myLibrary.indexOf(book)].textContent = "X";
-  createTableRow[myLibrary.indexOf(book)].appendChild(
-    createDelBtn[myLibrary.indexOf(book)]
-  );
-  createDelBtn[myLibrary.indexOf(book)].addEventListener("click", () => {
-    createTableRow[myLibrary.indexOf(book)].remove();
-    myLibrary.splice(myLibrary.indexOf(book), 1);
-    console.log(myLibrary);
-  });
 }
 
 //-------------------Forms-----------------------
@@ -155,10 +130,12 @@ cancelBtn.addEventListener("click", () => {
   resetForms();
 });
 
+//Clear forms after submitting or cancelling
 function resetForms() {
   document.querySelector("#leForm").reset();
 }
 
+//Delete all Rows and buttons
 function deleteAll() {
   let row = document.querySelectorAll("td");
   row.forEach((n) => {
