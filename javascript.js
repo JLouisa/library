@@ -1,23 +1,4 @@
-let myLibrary = [
-  // Book1 {
-  //   title: "Harry Potter",
-  //   Author: "J. K. Rowling",
-  //   Pages: "309",
-  //   Read: "No",
-  // },
-  // Book2 {
-  //   title: "Vampire Diaries",
-  //   Author: "L. J. Smith",
-  //   Pages: "272",
-  //   Read: "Yes",
-  // },
-  // Book3 {
-  //   title: "Lord of the Rings",
-  //   Author: "J. R. R. Tolkien",
-  //   Pages: "432",
-  //   Read: "No",
-  // },
-];
+let myLibrary = [];
 
 let createTableData = [];
 let createTableRow = [];
@@ -26,7 +7,7 @@ let titleInfo = "";
 let authorInfo = "";
 let pagesInfo = "";
 let readInfo = "";
-// let book = [];
+let createDelBtn = [];
 let i = 1;
 
 function Book(title, author, pages, read) {
@@ -85,6 +66,14 @@ function libraryAddScreen(getBook) {
       createTableData[i].textContent = book[property];
       createTableRow[i].appendChild(createTableData[i]);
     }
+    createDelBtn[i] = document.createElement("button");
+    createDelBtn[i].classList.add(`delBtn${i}`, "del");
+    createDelBtn[i].textContent = "X";
+    createTableRow[i].appendChild(createDelBtn[i]);
+    let delta = createTableRow[i];
+    createDelBtn[i].addEventListener("click", () => {
+      delta.remove();
+    });
     i++;
   }
 }
@@ -96,11 +85,20 @@ function singleAddScreen(book) {
   createTableDataHead[i].classList.add(`td${i}`);
   createTableDataHead[i].textContent = `Book ${i}`;
   createTableRow[i].appendChild(createTableDataHead[i]);
+
   for (let property in book) {
     createTableData[i] = document.createElement(`td`);
     createTableData[i].textContent = book[property];
     createTableRow[i].appendChild(createTableData[i]);
   }
+  createDelBtn[i] = document.createElement("button");
+  createDelBtn[i].classList.add(`delBtn${i}`, "del");
+  createDelBtn[i].textContent = "X";
+  createTableRow[i].appendChild(createDelBtn[i]);
+  let delta = createTableRow[i];
+  createDelBtn[i].addEventListener("click", () => {
+    delta.remove();
+  });
   i++;
 }
 
