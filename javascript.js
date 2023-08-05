@@ -47,7 +47,6 @@ function searchBook(book) {
 }
 
 const createTableBody = document.querySelector("tbody");
-createTableBody.classList;
 
 libraryAddScreen(myLibrary);
 
@@ -56,10 +55,6 @@ function libraryAddScreen(getBook) {
   for (let book of getBook) {
     createTableRow[i] = document.createElement("tr");
     createTableBody.appendChild(createTableRow[i]);
-    createTableDataHead[i] = document.createElement("td");
-    createTableDataHead[i].classList.add(`td${i}`);
-    createTableDataHead[i].textContent = `Book ${i}`;
-    createTableRow[i].appendChild(createTableDataHead[i]);
 
     for (let property in book) {
       createTableData[i] = document.createElement(`td`);
@@ -81,10 +76,6 @@ function libraryAddScreen(getBook) {
 function singleAddScreen(book) {
   createTableRow[i] = document.createElement("tr");
   createTableBody.appendChild(createTableRow[i]);
-  createTableDataHead[i] = document.createElement("td");
-  createTableDataHead[i].classList.add(`td${i}`);
-  createTableDataHead[i].textContent = `Book ${i}`;
-  createTableRow[i].appendChild(createTableDataHead[i]);
 
   for (let property in book) {
     createTableData[i] = document.createElement(`td`);
