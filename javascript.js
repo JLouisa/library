@@ -2,6 +2,12 @@ let myLibrary = [];
 let createTableData = [];
 let createTableRow = [];
 let createTableDataHead = [];
+let titleInfo = "";
+let authorInfo = "";
+let pagesInfo = "";
+let readInfo = "";
+// let book = [];
+let i = 1;
 
 function Book(title, author, pages, read) {
   (this.title = title),
@@ -10,8 +16,6 @@ function Book(title, author, pages, read) {
     (this.read = read);
 }
 
-let i = 1;
-
 const book1 = new Book("Harry Potter", "J. K. Rowling", "309", "No");
 const book2 = new Book("Vampire Diaries", "L. J. Smith", "272", "Yes");
 const book3 = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "No");
@@ -19,15 +23,15 @@ const book3 = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "No");
 myLibrary.push(book1, book2, book3);
 
 function addBookToLibrary() {
-  // let getBook = new Book("Harry Potter", "J. K. Rowling", "309", "No");
-  // myLibrary.push(getBook);
+  let getBook = new Book(titleInfo, authorInfo, pagesInfo, readInfo);
+  myLibrary.push(getBook);
   addScreen(myLibrary);
 }
 
 const createTableBody = document.querySelector("tbody");
 createTableBody.classList;
 
-addBookToLibrary();
+// addBookToLibrary();
 
 function addScreen(library) {
   for (let book of library) {
@@ -78,20 +82,12 @@ function updateValue4(e) {
 }
 
 //------------------3 Button EventListener-------------------------
-let titleInfo = "";
-let authorInfo = "";
-let pagesInfo = "";
-let readInfo = "";
-let book = [];
-
 newBtn.addEventListener("click", () => {
   theForm.setAttribute("style", "visibility: visible;");
 });
 
 addBtn.addEventListener("click", () => {
-  createBook(titleInfo, authorInfo, pagesInfo, readInfo);
-  addBookToLibrary(i);
-  addScreen(book[i].title, book[i].author, book[i].pages, book[i].read);
+  addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo);
   resetForms();
   theForm.setAttribute("style", "visibility: hidden;");
 });
