@@ -8,7 +8,6 @@ let authorInfo = "";
 let pagesInfo = "";
 let readInfo = "";
 let createDelBtn = [];
-let i = 1;
 
 function Book(title, author, pages, read) {
   (this.title = title),
@@ -53,44 +52,58 @@ libraryAddScreen(myLibrary);
 //Create on screen
 function libraryAddScreen(getBook) {
   for (let book of getBook) {
-    createTableRow[i] = document.createElement("tr");
-    createTableBody.appendChild(createTableRow[i]);
+    createTableRow[getBook.indexOf(book)] = document.createElement("tr");
+    createTableBody.appendChild(createTableRow[getBook.indexOf(book)]);
 
     for (let property in book) {
-      createTableData[i] = document.createElement(`td`);
-      createTableData[i].textContent = book[property];
-      createTableRow[i].appendChild(createTableData[i]);
+      createTableData[getBook.indexOf(book)] = document.createElement(`td`);
+      createTableData[getBook.indexOf(book)].textContent = book[property];
+      createTableRow[getBook.indexOf(book)].appendChild(
+        createTableData[getBook.indexOf(book)]
+      );
     }
-    createDelBtn[i] = document.createElement("button");
-    createDelBtn[i].classList.add(`delBtn${i}`, "del");
-    createDelBtn[i].textContent = "X";
-    createTableRow[i].appendChild(createDelBtn[i]);
-    let delta = createTableRow[i];
-    createDelBtn[i].addEventListener("click", () => {
-      delta.remove();
+    createDelBtn[getBook.indexOf(book)] = document.createElement("button");
+    createDelBtn[getBook.indexOf(book)].classList.add(
+      `delBtn${getBook.indexOf(book)}`,
+      "del"
+    );
+    createDelBtn[getBook.indexOf(book)].textContent = "X";
+    createTableRow[getBook.indexOf(book)].appendChild(
+      createDelBtn[getBook.indexOf(book)]
+    );
+    createDelBtn[getBook.indexOf(book)].addEventListener("click", () => {
+      createTableRow[getBook.indexOf(book)].remove();
+      myLibrary.splice(getBook.indexOf(book), 1);
+      console.log(myLibrary);
     });
-    i++;
   }
 }
 
 function singleAddScreen(book) {
-  createTableRow[i] = document.createElement("tr");
-  createTableBody.appendChild(createTableRow[i]);
+  createTableRow[myLibrary.indexOf(book)] = document.createElement("tr");
+  createTableBody.appendChild(createTableRow[myLibrary.indexOf(book)]);
 
   for (let property in book) {
-    createTableData[i] = document.createElement(`td`);
-    createTableData[i].textContent = book[property];
-    createTableRow[i].appendChild(createTableData[i]);
+    createTableData[myLibrary.indexOf(book)] = document.createElement(`td`);
+    createTableData[myLibrary.indexOf(book)].textContent = book[property];
+    createTableRow[myLibrary.indexOf(book)].appendChild(
+      createTableData[myLibrary.indexOf(book)]
+    );
   }
-  createDelBtn[i] = document.createElement("button");
-  createDelBtn[i].classList.add(`delBtn${i}`, "del");
-  createDelBtn[i].textContent = "X";
-  createTableRow[i].appendChild(createDelBtn[i]);
-  let delta = createTableRow[i];
-  createDelBtn[i].addEventListener("click", () => {
-    delta.remove();
+  createDelBtn[myLibrary.indexOf(book)] = document.createElement("button");
+  createDelBtn[myLibrary.indexOf(book)].classList.add(
+    `delBtn${myLibrary.indexOf(book)}`,
+    "del"
+  );
+  createDelBtn[myLibrary.indexOf(book)].textContent = "X";
+  createTableRow[myLibrary.indexOf(book)].appendChild(
+    createDelBtn[myLibrary.indexOf(book)]
+  );
+  createDelBtn[myLibrary.indexOf(book)].addEventListener("click", () => {
+    createTableRow[myLibrary.indexOf(book)].remove();
+    myLibrary.splice(myLibrary.indexOf(book), 1);
+    console.log(myLibrary);
   });
-  i++;
 }
 
 //-------------------Forms-----------------------
@@ -142,3 +155,19 @@ cancelBtn.addEventListener("click", () => {
 function resetForms() {
   document.querySelector("#leForm").reset();
 }
+
+function deleteAll() {
+  let row = document.querySelectorAll("td");
+  row.forEach((n) => {
+    n.remove();
+  });
+  let delRow = document.querySelectorAll(".del");
+  delRow.forEach((d) => {
+    d.remove();
+  });
+}
+
+const deleteEverything = document.querySelector(".deleteEverything");
+deleteEverything.addEventListener("click", () => {
+  deleteAll();
+});
