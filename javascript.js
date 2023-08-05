@@ -169,8 +169,3 @@ function deleteAll() {
     d.remove();
   });
 }
-
-const deleteEverything = document.querySelector(".deleteEverything");
-deleteEverything.addEventListener("click", () => {
-  deleteAll();
-});
