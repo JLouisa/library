@@ -56,27 +56,39 @@ myLibrary.push(harryPotter, vampireDieres, lordOfTheRings);
 
 //Add books to array
 function addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo) {
+  console.log(`myLibrary is + ${myLibrary.length}`);
+  console.log("path1");
   let getBook = new Book(titleInfo, authorInfo, pagesInfo, readInfo);
+  console.log(`path 2 + ` + getBook);
   searchBook(getBook);
 }
 
 //Search in myLibrary Array for match
 function searchBook(book) {
-  let calcFound = false;
-  for (let x = 0; x < myLibrary.length; x++) {
-    if (myLibrary[x].title === book.title) {
-      alert("You already have this book in your list");
-      calcFound = true;
+  console.log("In search");
+
+  let x = myLibrary.length;
+  do {
+    if (x == 0) {
+      console.log("path4");
+      myLibrary.push(book);
+      deleteAll();
+      libraryAddScreen(myLibrary);
       break;
     } else {
-      if (x == myLibrary.length - 1 && calcFound == false) {
-        myLibrary.push(book);
-        deleteAll();
-        libraryAddScreen(myLibrary);
+      if (
+        myLibrary[x - 1].title === book.title &&
+        myLibrary[x - 1].author === book.author
+      ) {
+        alert("You already have this book in your list");
+        calcFound = true;
+        console.log("path3");
         break;
       }
     }
-  }
+    console.log("looping" + x);
+    x--;
+  } while (x >= -1);
 }
 
 const createTableBody = document.querySelector("tbody");
@@ -85,6 +97,7 @@ libraryAddScreen(myLibrary);
 
 //Create table content
 function libraryAddScreen(getBook) {
+  console.log("path5");
   for (let book of getBook) {
     createTableRow[getBook.indexOf(book)] = document.createElement(`tr`);
     createTableRow[getBook.indexOf(book)].classList.add(
