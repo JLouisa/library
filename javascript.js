@@ -55,7 +55,10 @@ libraryAddScreen(myLibrary);
 //Create table content
 function libraryAddScreen(getBook) {
   for (let book of getBook) {
-    createTableRow[getBook.indexOf(book)] = document.createElement("tr");
+    createTableRow[getBook.indexOf(book)] = document.createElement(`tr`);
+    createTableRow[getBook.indexOf(book)].classList.add(
+      `row$${getBook.indexOf(book)}`
+    );
     createTableBody.appendChild(createTableRow[getBook.indexOf(book)]);
 
     for (let property in book) {
@@ -95,7 +98,7 @@ const newBtn = document.querySelector("#newBtn");
 const theForm = document.querySelector(".theForm");
 const cancelBtn = document.querySelector("#cancelBtn");
 
-//------------------Typing EventListeners-----------------------
+//------------------Form EventListeners-----------------------
 titleEl.addEventListener("input", updateValue);
 authorEl.addEventListener("input", updateValue2);
 noPEl.addEventListener("input", updateValue3);
@@ -145,4 +148,9 @@ function deleteAll() {
   delRow.forEach((d) => {
     d.remove();
   });
+}
+
+//Change Read Status
+function changeStatus() {
+  book.read = "Yes";
 }
