@@ -92,7 +92,9 @@ libraryAddScreen(myLibrary);
 function libraryAddScreen(getBook) {
   for (let book of getBook) {
     createTableRow[getBook.indexOf(book)] = document.createElement(`tr`);
-    createTableRow[getBook.indexOf(book)].classList.add(`row${i}`);
+    createTableRow[getBook.indexOf(book)].classList.add(
+      `row${getBook.indexOf(book)}`
+    );
     createTableBody.appendChild(createTableRow[getBook.indexOf(book)]);
 
     Object.values(book).forEach((value) => {
@@ -105,7 +107,9 @@ function libraryAddScreen(getBook) {
         createTableData[getBook.indexOf(book)]
       );
     });
-    statusChange[getBook.indexOf(book)] = document.querySelector(`.row${i}`);
+    statusChange[getBook.indexOf(book)] = document.querySelector(
+      `.row${getBook.indexOf(book)}`
+    );
     statusChange[getBook.indexOf(book)].addEventListener("dblclick", () => {
       getBook[getBook.indexOf(book)].changeStatus();
     });
@@ -124,7 +128,7 @@ function libraryAddScreen(getBook) {
       deleteAll();
       libraryAddScreen(myLibrary);
     });
-    i++;
+    // i++;
   }
 }
 
@@ -183,29 +187,19 @@ function resetForms() {
 
 //Delete all Rows and buttons
 function deleteAll() {
-  let row = document.querySelectorAll("td");
-  row.forEach((n) => {
-    n.remove();
+  let row = document.querySelectorAll(`tbody > tr`);
+  row.forEach((k) => {
+    k.remove();
+  });
+  let cell = document.querySelectorAll("td");
+  cell.forEach((l) => {
+    l.remove();
   });
   let delRow = document.querySelectorAll(".del");
-  delRow.forEach((d) => {
-    d.remove();
+  delRow.forEach((m) => {
+    m.remove();
   });
 }
-
-// EvenListener for status change
-let statusChangeColor = document.querySelectorAll("tr > td:nth-child(4)");
-statusChangeColor.forEach((s) => {
-  s.addEventListener("dblclick", () => {
-    if (s.textContent == "not read yet") {
-      s.style.backgroundColor = "lightgreen";
-    } else {
-      if (s.textContent == "has been read") {
-        s.style.backgroundColor = "white";
-      }
-    }
-  });
-});
 
 console.log(myLibrary);
 console.log(myLibrary[0]);
