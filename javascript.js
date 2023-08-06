@@ -1,5 +1,6 @@
 let myLibrary = [];
 
+let i = 0;
 let createTableData = [];
 let createTableRow = [];
 let createTableDataHead = [];
@@ -8,6 +9,7 @@ let authorInfo = "";
 let pagesInfo = "";
 let readInfo = "";
 let createDelBtn = [];
+let statusChange = [];
 
 //Instructor
 function Book(title, author, pages, read) {
@@ -90,17 +92,22 @@ libraryAddScreen(myLibrary);
 function libraryAddScreen(getBook) {
   for (let book of getBook) {
     createTableRow[getBook.indexOf(book)] = document.createElement(`tr`);
-    createTableRow[getBook.indexOf(book)].classList.add(
-      `row$${getBook.indexOf(book)}`
-    );
+    createTableRow[getBook.indexOf(book)].classList.add(`row${i}`);
     createTableBody.appendChild(createTableRow[getBook.indexOf(book)]);
 
     Object.values(book).forEach((value) => {
       createTableData[getBook.indexOf(book)] = document.createElement(`td`);
+      createTableData[getBook.indexOf(book)].classList.add(
+        `lastCell${getBook.indexOf(book)}`
+      );
       createTableData[getBook.indexOf(book)].textContent = value;
       createTableRow[getBook.indexOf(book)].appendChild(
         createTableData[getBook.indexOf(book)]
       );
+    });
+    statusChange[getBook.indexOf(book)] = document.querySelector(`.row${i}`);
+    statusChange[getBook.indexOf(book)].addEventListener("dblclick", () => {
+      getBook[getBook.indexOf(book)].changeStatus();
     });
     createDelBtn[getBook.indexOf(book)] = document.createElement("button");
     createDelBtn[getBook.indexOf(book)].classList.add(
@@ -117,6 +124,7 @@ function libraryAddScreen(getBook) {
       deleteAll();
       libraryAddScreen(myLibrary);
     });
+    i++;
   }
 }
 
@@ -185,12 +193,22 @@ function deleteAll() {
   });
 }
 
-// //Change Read Status
-// function changeStatus() {
-//   if (book.read == "Yes") {
-//     book.read = "No";
-//   } else {
-//     book.read = "Yes";
-//   }
-//   libraryAddScreen(myLibrary);
-// }
+// EvenListener for status change
+let statusChangeColor = document.querySelectorAll("tr > td:nth-child(4)");
+statusChangeColor.forEach((s) => {
+  s.addEventListener("dblclick", () => {
+    if (s.textContent == "not read yet") {
+      s.style.backgroundColor = "lightgreen";
+    } else {
+      if (s.textContent == "has been read") {
+        s.style.backgroundColor = "white";
+      }
+    }
+  });
+});
+
+console.log(myLibrary);
+console.log(myLibrary[0]);
+console.log(myLibrary[0].read);
+console.log(harryPotter.read);
+console.log(myLibrary.indexOf(harryPotter));

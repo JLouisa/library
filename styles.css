@@ -88,6 +88,6 @@ td {
   transition: ease-in;
 }
 
-tr > td:nth-child(5):hover {
+tr > td:nth-child(4):hover {
   background-color: yellow;
 }
