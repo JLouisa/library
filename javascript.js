@@ -15,22 +15,25 @@ function Book(title, author, pages, read) {
     (this.author = author),
     (this.pages = pages),
     (this.read = read);
-  // (info = function () {
-  //   return `${this.title} by ${this.author} has ${this.pages} pages and ${this.read}`;
-  // }),
-  // (changeStatus = function () {
-  //   if (this.read == "Yes") {
-  //     this.read = "No";
-  //   } else {
-  //     this.read = "Yes";
-  //   }
-  //   libraryAddScreen(myLibrary);
-  // });
 }
 
 //Prototype Book
 Book.prototype.sayHello = function () {
   console.log("Hello, It's working!");
+};
+
+Book.prototype.info = function () {
+  return `${this.title} by ${this.author} has ${this.pages} pages and ${this.read}`;
+};
+
+Book.prototype.changeStatus = function () {
+  if (this.read == "has been read") {
+    this.read = "not read yet";
+  } else {
+    this.read = "has been read";
+  }
+  deleteAll();
+  libraryAddScreen(myLibrary);
 };
 
 //Default books
@@ -182,15 +185,12 @@ function deleteAll() {
   });
 }
 
-//Change Read Status
-function changeStatus() {
-  if (book.read == "Yes") {
-    book.read = "No";
-  } else {
-    book.read = "Yes";
-  }
-  libraryAddScreen(myLibrary);
-}
-
-// console.log(harryPotter.info());
-// console.log(harryPotter);
+// //Change Read Status
+// function changeStatus() {
+//   if (book.read == "Yes") {
+//     book.read = "No";
+//   } else {
+//     book.read = "Yes";
+//   }
+//   libraryAddScreen(myLibrary);
+// }
