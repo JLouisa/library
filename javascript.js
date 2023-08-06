@@ -92,7 +92,8 @@ const printBooks = document.querySelector(".books");
 const titleEl = document.querySelector("#addTitle");
 const authorEl = document.querySelector("#addAuthor");
 const noPEl = document.querySelector("#addNoP");
-const readEl = document.querySelector("#addRead");
+const readEl = document.querySelector("#addReadYes");
+const readEln = document.querySelector("#addReadNo");
 const addBtn = document.querySelector(".addBtn");
 const newBtn = document.querySelector("#newBtn");
 const theForm = document.querySelector(".theForm");
@@ -103,6 +104,7 @@ titleEl.addEventListener("input", updateValue);
 authorEl.addEventListener("input", updateValue2);
 noPEl.addEventListener("input", updateValue3);
 readEl.addEventListener("input", updateValue4);
+readEln.addEventListener("input", updateValue4);
 
 function updateValue(e) {
   titleInfo = e.target.value;
