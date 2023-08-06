@@ -1,6 +1,5 @@
 let myLibrary = [];
 
-let i = 0;
 let createTableData = [];
 let createTableRow = [];
 let createTableDataHead = [];
@@ -20,10 +19,6 @@ function Book(title, author, pages, read) {
 }
 
 //Prototype Book
-Book.prototype.sayHello = function () {
-  console.log("Hello, It's working!");
-};
-
 Book.prototype.info = function () {
   return `${this.title} by ${this.author} has ${this.pages} pages and ${this.read}`;
 };
@@ -128,7 +123,6 @@ function libraryAddScreen(getBook) {
       deleteAll();
       libraryAddScreen(myLibrary);
     });
-    // i++;
   }
 }
 
@@ -200,9 +194,3 @@ function deleteAll() {
     m.remove();
   });
 }
-
-console.log(myLibrary);
-console.log(myLibrary[0]);
-console.log(myLibrary[0].read);
-console.log(harryPotter.read);
-console.log(myLibrary.indexOf(harryPotter));
