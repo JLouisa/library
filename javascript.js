@@ -14,7 +14,15 @@ function Book(title, author, pages, read) {
   (this.title = title),
     (this.author = author),
     (this.pages = pages),
-    (this.read = read);
+    (this.read = read),
+    (changeStatus = function () {
+      if (this.read == "Yes") {
+        this.read = "No";
+      } else {
+        this.read = "Yes";
+      }
+      libraryAddScreen(myLibrary);
+    });
 }
 
 //Default books
@@ -82,7 +90,6 @@ function libraryAddScreen(getBook) {
       myLibrary.splice(getBook.indexOf(book), 1);
       deleteAll();
       libraryAddScreen(myLibrary);
-      console.log(myLibrary);
     });
   }
 }
@@ -154,5 +161,10 @@ function deleteAll() {
 
 //Change Read Status
 function changeStatus() {
-  book.read = "Yes";
+  if (book.read == "Yes") {
+    book.read = "No";
+  } else {
+    book.read = "Yes";
+  }
+  libraryAddScreen(myLibrary);
 }
