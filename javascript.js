@@ -14,22 +14,45 @@ function Book(title, author, pages, read) {
   (this.title = title),
     (this.author = author),
     (this.pages = pages),
-    (this.read = read),
-    (changeStatus = function () {
-      if (this.read == "Yes") {
-        this.read = "No";
-      } else {
-        this.read = "Yes";
-      }
-      libraryAddScreen(myLibrary);
-    });
+    (this.read = read);
+  // (info = function () {
+  //   return `${this.title} by ${this.author} has ${this.pages} pages and ${this.read}`;
+  // }),
+  // (changeStatus = function () {
+  //   if (this.read == "Yes") {
+  //     this.read = "No";
+  //   } else {
+  //     this.read = "Yes";
+  //   }
+  //   libraryAddScreen(myLibrary);
+  // });
 }
 
+//Prototype Book
+Book.prototype.sayHello = function () {
+  console.log("Hello, It's working!");
+};
+
 //Default books
-const book1 = new Book("Harry Potter", "J. K. Rowling", "309", "No");
-const book2 = new Book("Vampire Diaries", "L. J. Smith", "272", "Yes");
-const book3 = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "No");
-myLibrary.push(book1, book2, book3);
+const harryPotter = new Book(
+  "Harry Potter",
+  "J. K. Rowling",
+  "309",
+  "not read yet"
+);
+const vampireDieres = new Book(
+  "Vampire Diaries",
+  "L. J. Smith",
+  "272",
+  "has been read"
+);
+const lordOfTheRings = new Book(
+  "Lord of the Rings",
+  "J. R. R. Tolkien",
+  "432",
+  "not read yet"
+);
+myLibrary.push(harryPotter, vampireDieres, lordOfTheRings);
 
 //Add books to array
 function addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo) {
@@ -69,13 +92,13 @@ function libraryAddScreen(getBook) {
     );
     createTableBody.appendChild(createTableRow[getBook.indexOf(book)]);
 
-    for (let property in book) {
+    Object.values(book).forEach((value) => {
       createTableData[getBook.indexOf(book)] = document.createElement(`td`);
-      createTableData[getBook.indexOf(book)].textContent = book[property];
+      createTableData[getBook.indexOf(book)].textContent = value;
       createTableRow[getBook.indexOf(book)].appendChild(
         createTableData[getBook.indexOf(book)]
       );
-    }
+    });
     createDelBtn[getBook.indexOf(book)] = document.createElement("button");
     createDelBtn[getBook.indexOf(book)].classList.add(
       `delBtn${getBook.indexOf(book)}`,
@@ -168,3 +191,6 @@ function changeStatus() {
   }
   libraryAddScreen(myLibrary);
 }
+
+// console.log(harryPotter.info());
+// console.log(harryPotter);
