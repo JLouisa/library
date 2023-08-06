@@ -11,49 +11,53 @@
 </head>
 
 <body>
-  <p>Odin's Library</p>
-  <div class="newBook">
-    <button id="newBtn">NEW BOOK</button>
-  </div>
-  <div class="theForm">
-    <form action="" id="leForm">
-      <div>
-        <label for="addTitle">Title</label>
-        <input type="text" id="addTitle" name="addTitle" placeholder="Title" />
-      </div>
-      <div>
-        <label for="addAuthor">Author</label>
-        <input type="text" id="addAuthor" name="addAuthor" placeholder="Author" />
-      </div>
-      <div>
-        <label for="addNoP">Number of pages</label>
-        <input type="text" id="addNoP" name="addNoP" placeholder="Number of pages" />
-      </div>
-      <div>
-        <label for="addRead">Have your complete read this book</label><br>
-        <input type="radio" id="addReadYes" name="addRead" value="has been read" />
-        <label for="addReadYes">Yes</label>
-        <input type="radio" id="addReadNo" name="addRead" value="not read yet" />
-        <label for="addReadNo">No</label>
-      </div>
-    </form>
-    <button class="addBtn">Add Book</button>
-    <button id="cancelBtn">Cancel</button>
-  </div>
-  <div class="books">
-    <table>
-      <thead>
-        <tr>
-          <th class="bookTitle">Book</th>
-          <th>Author</th>
-          <th>Pages</th>
-          <th class="readCell">Have your read it?</th>
-        </tr>
-      </thead>
-      <tbody>
-
-      </tbody>
-    </table>
+  <div class="web">
+    <p>Odin's Library</p>
+    <div class="newBook">
+      <button id="newBtn" class="btnstyle2">NEW BOOK</button>
+    </div>
+    <div class="theForm">
+      <form action="" id="leForm">
+        <div class="innerForm">
+          <label for="addTitle">Title</label>
+          <input type="text" id="addTitle" name="addTitle" placeholder="Title" />
+        </div>
+        <div class="innerForm">
+          <label for="addAuthor">Author</label>
+          <input type="text" id="addAuthor" name="addAuthor" placeholder="Author" />
+        </div>
+        <div class="innerForm">
+          <label for="addNoP">Number of pages</label>
+          <input type="text" id="addNoP" name="addNoP" placeholder="Number of pages" />
+        </div>
+        <div class="innerRadio">
+          <label for="addRead">Have your complete read this book</label><br>
+          <div>
+            <input type="radio" id="addReadYes" name="addRead" value="has been read" />
+            <label for="addReadYes">Yes</label>
+            <input type="radio" id="addReadNo" name="addRead" value="not read yet" />
+            <label for="addReadNo">No</label>
+          </div>
+        </div>
+      </form>
+      <button class="addBtn btnstyle2">Add Book</button>
+      <button id="cancelBtn" class="addBtn btnstyle">Cancel</button>
+    </div>
+    <div class="books">
+      <table>
+        <thead>
+          <tr>
+            <th class="bookTitle">Book</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th class="readCell">Have your read it?</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <p class="tableTitle1">Double Click on the book to change read status</p>
+    </div>
   </div>
 </body>
 

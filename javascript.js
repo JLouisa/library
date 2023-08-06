@@ -160,17 +160,20 @@ function updateValue4(e) {
 
 //------------------3 Button EventListener-------------------------
 newBtn.addEventListener("click", () => {
-  theForm.setAttribute("style", "visibility: visible;");
+  theForm.setAttribute("style", "display: block; visibility: visible;");
+  newBtn.setAttribute("style", "visibility: hidden;");
 });
 
 addBtn.addEventListener("click", () => {
   addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo);
   resetForms();
-  theForm.setAttribute("style", "visibility: hidden;");
+  theForm.setAttribute("style", "display: none; visibility: hidden;");
+  newBtn.setAttribute("style", "visibility: visible;");
 });
 
 cancelBtn.addEventListener("click", () => {
-  theForm.setAttribute("style", "visibility: hidden;");
+  theForm.setAttribute("style", "display: none; visibility: hidden;");
+  newBtn.setAttribute("style", "visibility: visible;");
   resetForms();
 });
 

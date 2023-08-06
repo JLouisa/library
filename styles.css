@@ -1,18 +1,40 @@
+:root {
+  font-size: 16px;
+  font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+}
 body {
-  border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 0px;
+  margin: 0px;
+  height: 1000px;
+}
+
+.web {
+  box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.26);
+  max-width: 80%;
+  flex: 1;
+  background-color: rgb(249, 250, 254);
 }
 
 p {
   margin: 10px;
-  border: 1px solid red;
   color: purple;
   font-size: 100px;
   font-weight: 700;
   text-align: center;
 }
 
+.tableTitle1 {
+  color: purple;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 .books {
-  border: 1px solid green;
   padding: 50px;
   gap: 40px;
   display: flex;
@@ -28,9 +50,38 @@ p {
 }
 
 .theForm {
-  border: 1px solid green;
   text-align: center;
   visibility: hidden;
+  display: none;
+  margin: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px 12px;
+  font-size: 1.5rem;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+}
+
+input[type="text"] {
+  width: 20rem;
+  height: 2rem;
+  margin: 5px;
+}
+
+form:focus {
+  border-color: #0366d6;
+  outline: none;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
 .delBtn {
@@ -38,14 +89,13 @@ p {
 }
 
 .newBook {
-  border: 1px solid yellow;
   display: flex;
   justify-content: center;
 }
 
 table {
+  background-color: white;
   text-align: center;
-  border: 1px solid black;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
@@ -60,7 +110,6 @@ table {
 
 th,
 td {
-  border: 1px solid black;
   padding: 20px;
   text-align: center;
 }
@@ -89,5 +138,113 @@ td {
 }
 
 tr > td:nth-child(4):hover {
-  background-color: yellow;
+  background-color: #00987a7e;
+  cursor: pointer;
+}
+
+.innerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btnstyle2 {
+  margin: 10px;
+  outline: none;
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #009879, #009879);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #ffffff;
+  font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 20px;
+  vertical-align: top;
+  white-space: nowrap;
+  z-index: 9;
+  border: 0;
+  transition: box-shadow 0.2s;
+}
+
+.btnstyle {
+  margin: 10px;
+  outline: none;
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #ff7e31, #e62c03);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #ffffff;
+  font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 20px;
+  vertical-align: top;
+  white-space: nowrap;
+  z-index: 9;
+  border: 0;
+  transition: box-shadow 0.2s;
+}
+
+.btnstyle2:hover {
+  background: #00bd68;
+}
+
+.btnstyle:hover {
+  background: #e62c03;
+}
+
+/* CSS */
+.button-42 {
+  width: 100%;
+}
+
+.button-42:hover {
+  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-family: sans-serif;
+  min-width: 800px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.innerRadio {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
