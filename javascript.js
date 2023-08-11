@@ -10,18 +10,11 @@ let readInfo = "";
 let createDelBtn = [];
 let statusChange = [];
 
-//Instructor
-function Book(title, author, pages, read) {
-  (this.title = title),
-    (this.author = author),
-    (this.pages = pages),
-    (this.read = read);
+class Book {
+  constructor(title, author, pages, read) {
+    (this.title = title), (this.author = author), (this.pages = pages), (this.read = read);
+  }
 }
-
-//Prototype Book
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author} has ${this.pages} pages and ${this.read}`;
-};
 
 Book.prototype.changeStatus = function () {
   if (this.read == "has been read") {
@@ -34,59 +27,33 @@ Book.prototype.changeStatus = function () {
 };
 
 //Default books
-const harryPotter = new Book(
-  "Harry Potter",
-  "J. K. Rowling",
-  "309",
-  "not read yet"
-);
-const vampireDieres = new Book(
-  "Vampire Diaries",
-  "L. J. Smith",
-  "272",
-  "has been read"
-);
-const lordOfTheRings = new Book(
-  "Lord of the Rings",
-  "J. R. R. Tolkien",
-  "432",
-  "not read yet"
-);
+const harryPotter = new Book("Harry Potter", "J. K. Rowling", "309", "not read yet");
+const vampireDieres = new Book("Vampire Diaries", "L. J. Smith", "272", "has been read");
+const lordOfTheRings = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "not read yet");
 myLibrary.push(harryPotter, vampireDieres, lordOfTheRings);
 
 //Add books to array
 function addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo) {
-  console.log(`myLibrary is + ${myLibrary.length}`);
-  console.log("path1");
   let getBook = new Book(titleInfo, authorInfo, pagesInfo, readInfo);
-  console.log(`path 2 + ` + getBook);
   searchBook(getBook);
 }
 
 //Search in myLibrary Array for match
 function searchBook(book) {
-  console.log("In search");
-
   let x = myLibrary.length;
   do {
     if (x == 0) {
-      console.log("path4");
       myLibrary.push(book);
       deleteAll();
       libraryAddScreen(myLibrary);
       break;
     } else {
-      if (
-        myLibrary[x - 1].title === book.title &&
-        myLibrary[x - 1].author === book.author
-      ) {
+      if (myLibrary[x - 1].title === book.title && myLibrary[x - 1].author === book.author) {
         alert("You already have this book in your list");
         calcFound = true;
-        console.log("path3");
         break;
       }
     }
-    console.log("looping" + x);
     x--;
   } while (x >= -1);
 }
@@ -97,39 +64,25 @@ libraryAddScreen(myLibrary);
 
 //Create table content
 function libraryAddScreen(getBook) {
-  console.log("path5");
   for (let book of getBook) {
     createTableRow[getBook.indexOf(book)] = document.createElement(`tr`);
-    createTableRow[getBook.indexOf(book)].classList.add(
-      `row${getBook.indexOf(book)}`
-    );
+    createTableRow[getBook.indexOf(book)].classList.add(`row${getBook.indexOf(book)}`);
     createTableBody.appendChild(createTableRow[getBook.indexOf(book)]);
 
     Object.values(book).forEach((value) => {
       createTableData[getBook.indexOf(book)] = document.createElement(`td`);
-      createTableData[getBook.indexOf(book)].classList.add(
-        `lastCell${getBook.indexOf(book)}`
-      );
+      createTableData[getBook.indexOf(book)].classList.add(`lastCell${getBook.indexOf(book)}`);
       createTableData[getBook.indexOf(book)].textContent = value;
-      createTableRow[getBook.indexOf(book)].appendChild(
-        createTableData[getBook.indexOf(book)]
-      );
+      createTableRow[getBook.indexOf(book)].appendChild(createTableData[getBook.indexOf(book)]);
     });
-    statusChange[getBook.indexOf(book)] = document.querySelector(
-      `.row${getBook.indexOf(book)}`
-    );
+    statusChange[getBook.indexOf(book)] = document.querySelector(`.row${getBook.indexOf(book)}`);
     statusChange[getBook.indexOf(book)].addEventListener("dblclick", () => {
       getBook[getBook.indexOf(book)].changeStatus();
     });
     createDelBtn[getBook.indexOf(book)] = document.createElement("button");
-    createDelBtn[getBook.indexOf(book)].classList.add(
-      `delBtn${getBook.indexOf(book)}`,
-      "del"
-    );
+    createDelBtn[getBook.indexOf(book)].classList.add(`delBtn${getBook.indexOf(book)}`, "del");
     createDelBtn[getBook.indexOf(book)].textContent = "X";
-    createTableRow[getBook.indexOf(book)].appendChild(
-      createDelBtn[getBook.indexOf(book)]
-    );
+    createTableRow[getBook.indexOf(book)].appendChild(createDelBtn[getBook.indexOf(book)]);
     createDelBtn[getBook.indexOf(book)].addEventListener("click", () => {
       createTableRow[getBook.indexOf(book)].remove();
       myLibrary.splice(getBook.indexOf(book), 1);
