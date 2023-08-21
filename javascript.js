@@ -1,14 +1,14 @@
-let myLibrary = [];
+const myLibrary = [];
 
-let createTableData = [];
-let createTableRow = [];
-let createTableDataHead = [];
+const createTableData = [];
+const createTableRow = [];
 let titleInfo = "";
 let authorInfo = "";
 let pagesInfo = "";
 let readInfo = "";
-let createDelBtn = [];
-let statusChange = [];
+const createDelBtn = [];
+const statusChange = [];
+const createTableBody = document.querySelector("tbody");
 
 class Book {
   constructor(title, author, pages, read) {
@@ -16,55 +16,25 @@ class Book {
   }
 }
 
-Book.prototype.changeStatus = function () {
-  if (this.read == "has been read") {
-    this.read = "not read yet";
-  } else {
-    this.read = "has been read";
-  }
-  deleteAll();
-  libraryAddScreen(myLibrary);
-};
-
-//Default books
-const harryPotter = new Book("Harry Potter", "J. K. Rowling", "309", "not read yet");
-const vampireDieres = new Book("Vampire Diaries", "L. J. Smith", "272", "has been read");
-const lordOfTheRings = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "not read yet");
-myLibrary.push(harryPotter, vampireDieres, lordOfTheRings);
-
-//Add books to array
-function addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo) {
-  let getBook = new Book(titleInfo, authorInfo, pagesInfo, readInfo);
-  searchBook(getBook);
+// Delete all Rows and buttons
+function deleteAll() {
+  const row = document.querySelectorAll(`tbody > tr`);
+  row.forEach((k) => {
+    k.remove();
+  });
+  const cell = document.querySelectorAll("td");
+  cell.forEach((l) => {
+    l.remove();
+  });
+  const delRow = document.querySelectorAll(".del");
+  delRow.forEach((m) => {
+    m.remove();
+  });
 }
 
-//Search in myLibrary Array for match
-function searchBook(book) {
-  let x = myLibrary.length;
-  do {
-    if (x == 0) {
-      myLibrary.push(book);
-      deleteAll();
-      libraryAddScreen(myLibrary);
-      break;
-    } else {
-      if (myLibrary[x - 1].title === book.title && myLibrary[x - 1].author === book.author) {
-        alert("You already have this book in your list");
-        calcFound = true;
-        break;
-      }
-    }
-    x--;
-  } while (x >= -1);
-}
-
-const createTableBody = document.querySelector("tbody");
-
-libraryAddScreen(myLibrary);
-
-//Create table content
+// Create table content
 function libraryAddScreen(getBook) {
-  for (let book of getBook) {
+  getBook.forEach((book) => {
     createTableRow[getBook.indexOf(book)] = document.createElement(`tr`);
     createTableRow[getBook.indexOf(book)].classList.add(`row${getBook.indexOf(book)}`);
     createTableBody.appendChild(createTableRow[getBook.indexOf(book)]);
@@ -89,52 +59,95 @@ function libraryAddScreen(getBook) {
       deleteAll();
       libraryAddScreen(myLibrary);
     });
-  }
+  });
 }
 
-//-------------------Forms-----------------------
-const printBooks = document.querySelector(".books");
+Book.prototype.changeStatus = () => {
+  if (this.read === "has been read") {
+    this.read = "not read yet";
+  } else {
+    this.read = "has been read";
+  }
+  deleteAll();
+  libraryAddScreen(myLibrary);
+};
+
+// Clear forms after submitting or cancelling
+function resetForms() {
+  document.querySelector("#leForm").reset();
+}
+
+// Search in myLibrary Array for match
+function searchBook(book) {
+  let x = myLibrary.length;
+  do {
+    if (x === 0) {
+      myLibrary.push(book);
+      deleteAll();
+      libraryAddScreen(myLibrary);
+      break;
+    } else {
+      if (myLibrary[x - 1].title === book.title && myLibrary[x - 1].author === book.author) {
+        alert("You already have this book in your list");
+        break;
+      }
+    }
+    // x--;
+    x -= x;
+  } while (x >= -1);
+}
+
+// Default books
+const harryPotter = new Book("Harry Potter", "J. K. Rowling", "309", "not read yet");
+const vampireDieres = new Book("Vampire Diaries", "L. J. Smith", "272", "has been read");
+const lordOfTheRings = new Book("Lord of the Rings", "J. R. R. Tolkien", "432", "not read yet");
+myLibrary.push(harryPotter, vampireDieres, lordOfTheRings);
+
+// Add books to array
+function addBookToLibrary(gettitleInfo, getauthorInfo, getpagesInfo, getreadInfo) {
+  const getBook = new Book(gettitleInfo, getauthorInfo, getpagesInfo, getreadInfo);
+  searchBook(getBook);
+}
+
+libraryAddScreen(myLibrary);
+
+// -------------------Forms-----------------------
 const titleEl = document.querySelector("#addTitle");
 const authorEl = document.querySelector("#addAuthor");
 const noPEl = document.querySelector("#addNoP");
-const readEl = document.querySelector("#addReadYes");
-const readEln = document.querySelector("#addReadNo");
 const addBtn = document.querySelector(".addBtn");
 const newBtn = document.querySelector("#newBtn");
 const theForm = document.querySelector(".theForm");
 const cancelBtn = document.querySelector("#cancelBtn");
+const radioEl = document.querySelectorAll('input[type="radio"]');
 
-//------------------Form EventListeners-----------------------
-titleEl.addEventListener("input", updateValue);
-authorEl.addEventListener("input", updateValue2);
-noPEl.addEventListener("input", updateValue3);
-readEl.addEventListener("input", updateValue4);
-readEln.addEventListener("input", updateValue4);
-
-function updateValue(e) {
-  titleInfo = e.target.value;
-}
-function updateValue2(e) {
-  authorInfo = e.target.value;
-}
-function updateValue3(e) {
-  pagesInfo = e.target.value;
-}
-function updateValue4(e) {
-  readInfo = e.target.value;
+// ------------------Form EventListeners-----------------------
+function getInfo() {
+  titleInfo = titleEl.value;
+  authorInfo = authorEl.value;
+  pagesInfo = noPEl.value;
+  radioEl.forEach((radio) => {
+    if (radio.checked === true) {
+      readInfo = radio.defaultValue;
+    }
+  });
 }
 
-//------------------3 Button EventListener-------------------------
+// ------------------3 Button EventListener-------------------------
 newBtn.addEventListener("click", () => {
   theForm.setAttribute("style", "display: block; visibility: visible;");
   newBtn.setAttribute("style", "visibility: hidden;");
 });
 
 addBtn.addEventListener("click", () => {
-  addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo);
-  resetForms();
-  theForm.setAttribute("style", "display: none; visibility: hidden;");
-  newBtn.setAttribute("style", "visibility: visible;");
+  if (titleEl.validity.valid === true && authorEl.validity.valid === true && noPEl.validity.valid === true) {
+    event.preventDefault();
+    getInfo();
+    addBookToLibrary(titleInfo, authorInfo, pagesInfo, readInfo);
+    resetForms();
+    theForm.setAttribute("style", "display: none; visibility: hidden;");
+    newBtn.setAttribute("style", "visibility: visible;");
+  }
 });
 
 cancelBtn.addEventListener("click", () => {
@@ -142,24 +155,3 @@ cancelBtn.addEventListener("click", () => {
   newBtn.setAttribute("style", "visibility: visible;");
   resetForms();
 });
-
-//Clear forms after submitting or cancelling
-function resetForms() {
-  document.querySelector("#leForm").reset();
-}
-
-//Delete all Rows and buttons
-function deleteAll() {
-  let row = document.querySelectorAll(`tbody > tr`);
-  row.forEach((k) => {
-    k.remove();
-  });
-  let cell = document.querySelectorAll("td");
-  cell.forEach((l) => {
-    l.remove();
-  });
-  let delRow = document.querySelectorAll(".del");
-  delRow.forEach((m) => {
-    m.remove();
-  });
-}

@@ -20,27 +20,27 @@
       <form action="" id="leForm">
         <div class="innerForm">
           <label for="addTitle">Title</label>
-          <input type="text" id="addTitle" name="addTitle" placeholder="Title" />
+          <input type="text" id="addTitle" name="addTitle" placeholder="Title" required />
         </div>
         <div class="innerForm">
           <label for="addAuthor">Author</label>
-          <input type="text" id="addAuthor" name="addAuthor" placeholder="Author" />
+          <input type="text" id="addAuthor" name="addAuthor" placeholder="Author" required />
         </div>
         <div class="innerForm">
           <label for="addNoP">Number of pages</label>
-          <input type="text" id="addNoP" name="addNoP" placeholder="Number of pages" />
+          <input type="number" id="addNoP" name="addNoP" placeholder="Number of pages" required />
         </div>
         <div class="innerRadio">
           <label for="addRead">Have your complete read this book</label><br>
           <div>
             <input type="radio" id="addReadYes" name="addRead" value="has been read" />
             <label for="addReadYes">Yes</label>
-            <input type="radio" id="addReadNo" name="addRead" value="not read yet" />
+            <input type="radio" id="addReadNo" name="addRead" value="not read yet" checked />
             <label for="addReadNo">No</label>
           </div>
         </div>
       </form>
-      <button class="addBtn btnstyle2">Add Book</button>
+      <button form="leForm" class="addBtn btnstyle2" type="submit">Book</button>
       <button id="cancelBtn" class="addBtn btnstyle">Cancel</button>
     </div>
     <div class="books">
